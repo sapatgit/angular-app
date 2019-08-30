@@ -1,0 +1,17 @@
+.logo-img {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 10px;
+}
+.search-bar {
+    width: 30%;
+    float: right;
+}
+.search-bar > input {
+    width: 75%;
+    float: left;
+}
+.search-bar > button {
+    margin-top: 4px;
+    float: right;
+}

@@ -1,0 +1,26 @@
+<section class="container-fluid">
+    <section class="row justify-content-md-center">
+        <section class="card col-md-3 profile">
+            <img src="{{prof.avatar_url}}" alt="avatar" class="profile-pic rounded-circle">
+            <h3>{{prof.name}}</h3>
+            <h5>{{prof.login}}</h5>
+            <p> Location: {{prof.location}}<br/>
+                Followers: {{prof.followers}}<br/>
+                Public Repos: {{prof.public_repos}}<br/>
+                Private Repos: {{prof.total_private_repos}}</p>
+        </section>
+        <section class="col-md-8 repos">
+            <h3>Starred Repositories: </h3>
+            <hr>
+            <section class="row">
+                <article *ngFor="let star of stars" class="card card-body col-md-5 repos">
+                    <h3>{{star.name}}</h3>
+                    <p>{{star.description}}</p>
+                </article>
+            </section>
+        </section>
+        <section>
+            
+        </section>
+    </section>
+</section>

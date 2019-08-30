@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GithubService } from './githubservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'github-angular';
+
+  constructor(private _github:GithubService, private router: Router) {}
+  
+  onSearch(query: string) {
+    this._github.setSearch(query);
+  }
+  routeToSearch() {
+      this.router.navigateByUrl("").then(() => {
+        this.router.navigateByUrl('search');
+      });
+  }
 }
