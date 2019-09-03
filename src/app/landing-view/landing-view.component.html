@@ -7,20 +7,19 @@
             <p> Location: {{prof.location}}<br/>
                 Followers: {{prof.followers}}<br/>
                 Public Repos: {{prof.public_repos}}<br/>
-                Private Repos: {{prof.total_private_repos}}</p>
+                Public Gists: {{prof.public_gists}}</p>
         </section>
         <section class="col-md-8 repos">
-            <h3>Repositories: </h3>
+            <h3>Your Repositories: </h3>
             <hr>
             <section class="row">
-                <article *ngFor="let repo of repos" class="card card-body col-md-5 repos">
-                    <h3>{{repo.name}}</h3>
+                <article *ngFor="let repo of repos; index as i" class="card card-body col-md-5 repos">
+                    <button type="button" class="btn btn-link">
+                        <h3 (click)="routeToRepo(i)">{{repo.name}}</h3>
+                    </button>
                     <p>{{repo.description}}</p>
                 </article>
             </section>
-        </section>
-        <section>
-            
         </section>
     </section>
 </section>

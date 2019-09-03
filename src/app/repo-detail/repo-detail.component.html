@@ -1,0 +1,87 @@
+<section class="container-fluid">
+    <section class="row justify-content-md-center">
+        <section class="card col-md-3 profile">
+            <img src="{{prof.avatar_url}}" alt="avatar" class="profile-pic rounded-circle">
+            <h3>{{prof.name}}</h3>
+            <h5>{{prof.login}}</h5>
+            <p> Location: {{prof.location}}<br />
+                Followers: {{prof.followers}}<br />
+                Public Repos: {{prof.public_repos}}<br />
+                Public Gists: {{prof.public_gists}}</p>
+        </section>
+        <section class="col-md-8 repos">
+            <h3>{{repo.name}} Repository: </h3>
+            <hr>
+            <section class="row">
+                <article class="card card-body col-md-5 repos">
+                    <h3><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h3>
+                    <p> {{repo.description}}</p>
+                    <p> Owned by: {{repo.owner.login}} <br />
+                        Forks: {{repo.forks}} <br />
+                        Issues: {{repo.open_issues}} <br />
+                        Stars: {{repo.stargazers_count}} <br />
+                        Creation Date: {{repo.pushed_at | date: 'medium'}} <br />
+                        Updation Date: {{repo.updated_at | date: 'medium'}} <br /></p>
+                    <button type="button" class="btn btn-danger" (click)="deleteRepo()">Delete</button>
+                    <br>
+                    <section *ngIf="isFav; then thenBlock else elseBlock"></section>
+                    <ng-template #thenBlock>
+                        <button type="button" class="btn btn-success" data-toggle="modal"
+                            data-target="#ModalComment">Add to Favorites</button>
+                        <section class="modal fade" id="ModalComment" tabindex="-1" role="dialog" aria-hidden="true">
+                            <section class="modal-dialog modal-dialog-centered" role="document">
+                                <section class="modal-content">
+                                    <section class="modal-header">
+                                        <h5 class="modal-title">Add Comments</h5>
+                                    </section>
+                                    <section class="modal-body">
+                                        <form>
+                                            <label for="repo-comment">Comments</label>
+                                            <input #comment type="text" class="form-control" id="repo-comment"
+                                                name="comment" placeholder="">
+                                        </form>
+                                    </section>
+                                    <section class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button (click)="addFav(comment.value)" type="button" data-dismiss="modal"
+                                            class="btn btn-primary">Mark Favorite</button>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </ng-template>
+                    <ng-template #elseBlock>
+                        <button (click)="removeFav()" type="button" class="btn btn-danger">Remove from
+                            Favorites</button>
+                        <br>
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                        data-target="#ModalComment">Edit Comments</button>
+                        <section class="modal fade" id="ModalComment" tabindex="-1" role="dialog" aria-hidden="true">
+                            <section class="modal-dialog modal-dialog-centered" role="document">
+                                <section class="modal-content">
+                                    <section class="modal-header">
+                                        <h5 class="modal-title">Add Comments</h5>
+                                    </section>
+                                    <section class="modal-body">
+                                        <form>
+                                            <label for="repo-comment">Comments</label>
+                                            <input #comment type="text" class="form-control" id="repo-comment"
+                                                name="comment" placeholder="{{fav}}">
+                                        </form>
+                                    </section>
+                                    <section class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button (click)="editFav(comment.value)" type="button" data-dismiss="modal"
+                                            class="btn btn-primary">Mark Favorite</button>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </ng-template>
+                </article>
+            </section>
+        </section>
+    </section>
+</section>

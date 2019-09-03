@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GithubService } from './githubservice.service';
 import { Router } from '@angular/router';
 
@@ -7,13 +7,15 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
+  public prof = [];
 
   constructor(private _github:GithubService, private router: Router) {}
   
   onSearch(query: string) {
     this._github.setSearch(query);
   }
+
   routeToSearch() {
       this.router.navigateByUrl("").then(() => {
         this.router.navigateByUrl('search');

@@ -7,20 +7,20 @@
             <p> Location: {{prof.location}}<br/>
                 Followers: {{prof.followers}}<br/>
                 Public Repos: {{prof.public_repos}}<br/>
-                Private Repos: {{prof.total_private_repos}}</p>
+                Public Gists: {{prof.public_gists}}</p>
         </section>
         <section class="col-md-8 repos">
-            <h3>Starred Repositories: </h3>
+            <h3>Favorite Repositories: </h3>
             <hr>
+            <h5 *ngIf="isEmpty">No Favorite Repositories</h5>
             <section class="row">
-                <article *ngFor="let star of stars" class="card card-body col-md-5 repos">
-                    <h3>{{star.name}}</h3>
-                    <p>{{star.description}}</p>
+                <article *ngFor="let star of stars; index as i" class="card card-body col-md-5 repos">
+                    <button type="button" class="btn btn-link">
+                        <h3 (click)="routeToRepo(i)">{{star.name}}</h3>
+                    </button>
+                    <p>{{star.comment}}</p>
                 </article>
             </section>
-        </section>
-        <section>
-            
         </section>
     </section>
 </section>

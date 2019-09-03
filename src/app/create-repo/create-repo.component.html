@@ -1,1 +1,47 @@
-<p>create-repo works!</p>
+<section class="container-fluid">
+    <section class="row justify-content-md-center">
+        <section class="card col-md-3 profile">
+            <img src="{{prof.avatar_url}}" alt="avatar" class="profile-pic rounded-circle">
+            <h3>{{prof.name}}</h3>
+            <h5>{{prof.login}}</h5>
+            <p> Location: {{prof.location}}<br/>
+                Followers: {{prof.followers}}<br/>
+                Public Repos: {{prof.public_repos}}<br/>
+                Public Gists: {{prof.public_gists}}</p>
+        </section>
+        <section class="col-md-8 repos">
+            <h3>Create new Repository: </h3>
+            <hr>
+            <form #createRepo="ngForm" (ngSubmit)='createRepoSubmit(createRepo)'>
+                <section class="form-group">
+                    <label for="repo-name">Repository Name *</label>
+                    <input type="text" class="form-control" id="repo-name" name="name" aria-describedby="repo-name-help" placeholder="" ngModel>
+                    <small id="repo-name-help" class="form-text text-muted">Great repository names are short and memorable. Need inspiration? How about effective-carnival?</small>
+                </section>
+                <section class="form-group">
+                    <label for="repo-desc">Description (optional)</label>
+                    <input type="text" class="form-control" id="repo-desc" name="description" placeholder="" ngModel>
+                </section>
+                <hr>
+                <section class="form-check">
+                    <input class="form-check-input" type="radio" name="private" aria-describedby="repo-public-help" id="public" [value]="false" ngModel checked>
+                    <label class="form-check-label" for="private">Public</label>
+                    <small id="repo-public-help" class="form-text text-muted">Anyone can see this repository. You choose who can commit.</small>
+                </section>
+                <section class="form-check">
+                    <input class="form-check-input" type="radio" name="private" aria-describedby="repo-private-help" id="private" [value]="true" ngModel>
+                    <label class="form-check-label" for="private">Private</label>
+                    <small id="repo-private-help" class="form-text text-muted">You choose who can see and commit to this repository.</small>
+                </section>
+                <hr>
+                <p>Skip this step if you’re importing an existing repository.</p>
+                <section class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" name="auto_init" aria-describedby="repo-readme-help" id="readme-check" ngModel checked>
+                    <label class="form-check-label" for="readme-check">Initialize this repository with a README</label>
+                    <small id="repo-readme-help" class="form-text text-muted">This will let you immediately clone the repository to your computer.</small>
+                </section>
+                <button type="submit" class="btn btn-success">Create Repository</button>
+            </form>
+        </section>
+    </section>
+</section>
